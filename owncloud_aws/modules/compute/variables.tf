@@ -1,8 +1,10 @@
 variable "project" {
+  type        = string
   description = "Name of the project"
 }
 
 variable "environment" {
+  type        = string
   description = "The Deployment environment"
 }
 

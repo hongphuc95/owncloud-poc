@@ -1,3 +1,4 @@
+// Load Balancer Security Group
 resource "aws_security_group" "alb-sg" {
   name        = "alb-sg"
   description = "Load Balancer Security Group"

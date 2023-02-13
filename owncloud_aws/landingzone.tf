@@ -22,13 +22,27 @@ module "lb" {
 }
 
 module "ec2" {
-  source          = "./modules/compute"
-  environment     = var.environment
-  project         = var.project
-  vpc_id          = module.vpc.vpc_id
-  allowed_sgs     = ["${module.lb.alb_sg_id}"]
-  allowed_subnets = module.vpc.private_subnets_id
+  source           = "./modules/compute"
+  environment      = var.environment
+  project          = var.project
+  vpc_id           = module.vpc.vpc_id
+  allowed_sgs      = ["${module.lb.alb_sg_id}"]
+  allowed_subnets  = module.vpc.private_subnets_id
   target_group_arn = module.lb.target_group_arn
-  instance_type   = "t2.micro"
-  iam_role        = "SSM-TestInstance"
+  instance_type    = "t2.micro"
+  iam_role         = "Owncloud"
+}
+
+module "db" {
+  source            = "./modules/storage"
+  environment       = var.environment
+  project           = var.project
+  vpc_id            = module.vpc.vpc_id
+  db_engine         = "mariadb"
+  db_engine_version = "10.6.10"
+  db_instance       = "db.t2.micro"
+  allowed_sgs       = ["${module.ec2.ec2_sg_id}"]
+  allowed_subnets   = module.vpc.private_subnets_id
+  db_password       = var.project
+  allocated_storage = 5
 }

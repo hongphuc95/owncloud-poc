@@ -5,11 +5,13 @@ variable "region" {
 }
 
 variable "project" {
+  type        = string
   description = "Name of the project"
   default     = "owncloud"
 }
 
 variable "environment" {
+  type        = string
   description = "The Deployment environment"
 }
 
