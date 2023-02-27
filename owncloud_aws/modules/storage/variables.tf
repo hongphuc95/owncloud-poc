@@ -23,6 +23,16 @@ variable "db_instance" {
   description = "Database instance type"
 }
 
+variable "db_name" {
+  type        = string
+  description = "Database name"
+}
+
+variable "db_username" {
+  type        = string
+  description = "Database root username"
+}
+
 variable "db_password" {
   type        = string
   sensitive   = true

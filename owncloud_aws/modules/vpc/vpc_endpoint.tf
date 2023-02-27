@@ -70,7 +70,7 @@ resource "aws_vpc_endpoint" "s3-endpoint" {
 }
 
 resource "aws_vpc_endpoint_route_table_association" "endpoint-association" {
-  count          = length(var.private_subnets_cidr)
-  route_table_id = aws_route_table.private.id
+  count           = length(var.private_subnets_cidr)
+  route_table_id  = aws_route_table.private.id
   vpc_endpoint_id = aws_vpc_endpoint.s3-endpoint.id
 }

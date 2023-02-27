@@ -46,11 +46,11 @@ resource "aws_db_subnet_group" "subnet-group" {
 
 resource "aws_db_instance" "rds" {
   allocated_storage      = var.allocated_storage
-  db_name                = "${var.project}${var.environment}"
+  db_name                = var.db_name
   engine                 = var.db_engine
   engine_version         = var.db_engine_version
   instance_class         = var.db_instance
-  username               = var.project
+  username               = var.db_username
   password               = var.db_password
   vpc_security_group_ids = ["${aws_security_group.db-sg.id}"]
   db_subnet_group_name   = aws_db_subnet_group.subnet-group.name

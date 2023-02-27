@@ -29,7 +29,7 @@ module "ec2" {
   allowed_sgs      = ["${module.lb.alb_sg_id}"]
   allowed_subnets  = module.vpc.private_subnets_id
   target_group_arn = module.lb.target_group_arn
-  instance_type    = "t2.micro"
+  instance_type    = "t4g.micro"
   iam_role         = "Owncloud"
 }
 
@@ -43,6 +43,8 @@ module "db" {
   db_instance       = "db.t2.micro"
   allowed_sgs       = ["${module.ec2.ec2_sg_id}"]
   allowed_subnets   = module.vpc.private_subnets_id
-  db_password       = var.project
   allocated_storage = 5
+  db_name           = "ownclouddb"
+  db_username       = var.project
+  db_password       = var.project
 }

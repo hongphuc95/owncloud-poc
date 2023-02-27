@@ -85,7 +85,8 @@ resource "aws_security_group" "ec2-sg" {
 
 // EC2 creation
 resource "aws_instance" "ec2" {
-  ami                    = data.aws_ami.amazon-linux-2.id
+  # ami                    = data.aws_ami.ubuntu.id
+  ami                    = "ami-0209ce158adf6610e"
   instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.ec2-sg.id]
   subnet_id              = var.allowed_subnets[0]
